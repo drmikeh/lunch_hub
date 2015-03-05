@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name clientApp
+ * @name lunchHubApp
  * @description
- * # clientApp
+ * # lunchHubApp
  *
  * Main module of the application.
  */
 angular
-  .module('clientApp', [
+  .module('lunchHubApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -22,6 +22,10 @@ angular
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
+      })
+      .when('/groups', {
+        templateUrl: 'views/groups.html',
+        controller: 'GroupCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html',

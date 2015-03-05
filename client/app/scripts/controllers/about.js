@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name clientApp.controller:AboutCtrl
+ * @name lunchHubApp.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the clientApp
+ * Controller of the lunchHubApp
  */
-angular.module('clientApp')
+angular.module('lunchHubApp')
   .controller('AboutCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
