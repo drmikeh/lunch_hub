@@ -4,8 +4,19 @@ angular.module('lunchHubApp')
 .service('GroupService', function($http) {
 
   this.getGroups = function() {
-    // return a promise
     return $http.get('/api/groups');
+  };
+
+  this.editGroup = function(group) {
+    return $http.put('/api/groups/' + group.id, { group: group } );
+  };
+
+  this.addGroup = function(group) {
+    return $http.post('/api/groups', { group: group } );
+  };
+
+  this.destroyGroup = function(group) {
+    return $http.delete('/api/groups/' + group.id);
   };
 
 });

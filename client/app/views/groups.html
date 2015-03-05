@@ -1,9 +1,20 @@
-<div class="groups">
+<div class="container groups">
   <h1>Groups</h1>
+
+  <form id="new-group-form" ng-submit="addGroup()">
+    <label>New Group</label>
+    <input placeholder="Name"
+           ng-model="newGroupName"
+           ng-disabled="saving" autofocus>
+  </form>
+
   <ul>
     <li ng-repeat="group in groups">
-      <span> {{group.name}}</span>
-      <button class="btn btn-primary group-edit" ng-click="edit(group)">Edit</button>
+      <span>{{ group.name }}</span>
+      <span class="group-actions">
+        <button class="btn btn-primary" ng-click="editGroup(group)">Edit</button>
+        <button class="btn btn-danger"  ng-click="destroyGroup(group)">Delete</button>
+      </span>
     </li>
   </ul>
 </div>

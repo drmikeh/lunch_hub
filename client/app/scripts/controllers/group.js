@@ -6,19 +6,48 @@ angular.module('lunchHubApp')
   function getGroups() {
     GroupService.getGroups()
     .success(function(data /*, status, headers, config */) {
-      // this callback will be called asynchronously
-      // when the response is available
       $scope.groups = data;
     })
     .error(function(/* data, status, headers, config */) {
-      alert('Something went wrong getting the groups.');
+      alert('GET: error');
     });
   }
 
   getGroups();
 
-  $scope.edit = function(group) {
-    console.log('group: ' + group);
+  $scope.editGroup = function(group) {
+    GroupService.editGroup(group)
+    .success(function() {
+      getGroups();
+    })
+    .error(function(data, status) {
+      console.log(data);
+      alert('EDIT ERROR: ' + status + ' : ' + JSON.stringify(data));
+    });
+  };
+
+  $scope.addGroup = function() {
+    var newGroup = { name: $scope.newGroupName };
+    GroupService.addGroup(newGroup)
+    .success(function() {
+      $scope.newGroupName = null;
+      getGroups();
+    })
+    .error(function(data, status) {
+      console.log(data);
+      alert('SAVE ERROR: ' + status + ' : ' + JSON.stringify(data));
+    });
+  };
+
+  $scope.destroyGroup = function(group) {
+    GroupService.destroyGroup(group)
+    .success(function() {
+      getGroups();
+    })
+    .error(function(data, status) {
+      console.log(data);
+      alert('DESTROY ERROR: ' + status + ' : ' + JSON.stringify(data));
+    });
   };
 
 });
