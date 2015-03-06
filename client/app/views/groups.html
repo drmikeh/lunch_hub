@@ -10,10 +10,11 @@
 
   <ul>
     <li ng-repeat="group in groups">
-      <span>{{ group.name }}</span>
+      <span><a href="#"
+               editable-text="group.name"
+               onbeforesave="updateGroup(group)">{{ group.name }}</a></span>
       <span class="group-actions">
-        <button class="btn btn-primary" ng-click="editGroup(group)">Edit</button>
-        <button class="btn btn-danger"  ng-click="destroyGroup(group)">Delete</button>
+        <button class="btn btn-danger"  ng-click="destroyGroup(group)">X</button>
       </span>
     </li>
   </ul>

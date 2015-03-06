@@ -15,8 +15,8 @@ angular.module('lunchHubApp')
 
   getGroups();
 
-  $scope.editGroup = function(group) {
-    GroupService.editGroup(group)
+  $scope.updateGroup = function(group) {
+    GroupService.updateGroup(group)
     .success(function() {
       getGroups();
     })

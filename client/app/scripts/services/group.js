@@ -7,7 +7,8 @@ angular.module('lunchHubApp')
     return $http.get('/api/groups');
   };
 
-  this.editGroup = function(group) {
+  this.updateGroup = function(group) {
+    console.log('updateGroup: ' + JSON.stringify(group));
     return $http.put('/api/groups/' + group.id, { group: group } );
   };
 
