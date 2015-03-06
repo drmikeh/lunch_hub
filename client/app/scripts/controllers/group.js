@@ -16,7 +16,7 @@ angular.module('lunchHubApp')
   getGroups();
 
   $scope.updateGroup = function(group) {
-    GroupService.updateGroup(group)
+    return GroupService.updateGroup(group)
     .success(function() {
       getGroups();
     })

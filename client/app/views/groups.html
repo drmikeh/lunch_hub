@@ -12,7 +12,7 @@
     <li ng-repeat="group in groups">
       <span><a href="#"
                editable-text="group.name"
-               onbeforesave="updateGroup(group)">{{ group.name }}</a></span>
+               onaftersave="updateGroup(group)">{{ group.name }}</a></span>
       <span class="group-actions">
         <button class="btn btn-danger"  ng-click="destroyGroup(group)">X</button>
       </span>
