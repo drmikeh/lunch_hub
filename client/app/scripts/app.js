@@ -13,28 +13,31 @@ angular
     'ngAnimate',
     'ngCookies',
     'ngResource',
-    'ngRoute',
+    'ui.router',
     'ngSanitize',
     'ngTouch',
     'xeditable'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/groups', {
-        templateUrl: 'views/groups.html',
-        controller: 'GroupCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
+  .config(function ($stateProvider, $urlRouterProvider) {
+
+    $stateProvider
+    .state('home', {
+      url: '/',
+      templateUrl: 'views/main.html',
+      controller: 'MainCtrl'
+    })
+    .state('groups', {
+      url: '/groups',
+      templateUrl: 'views/groups.html',
+      controller: 'GroupCtrl'
+    })
+    .state('about', {
+      url: '/about',
+      templateUrl: 'views/about.html',
+      controller: 'AboutCtrl'
+    });
+
+    $urlRouterProvider.otherwise('home');
   })
   .run(function(editableOptions) {
     editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
