@@ -1,6 +1,26 @@
 Rails.application.routes.draw do
+  
+  root 'static_pages#welcome'
+  
+  # We have put everything under '/app' or '/api' so that we have 2 prefixes for our proxy:
 
+  scope '/app' do
+    # This route will load up our AngularJS App
+    match '/app/main',     to: 'application#index',    via: 'get'
+    # These resources are available from the Rails routes
+    resources :users, except: [:show]
+    resources :sessions, only: [:new, :create, :destroy]
+  
+
+
+    match '/signup',  to: 'users#new',            via: 'get'
+    match '/signin',  to: 'sessions#new',         via: 'get'
+    match '/signout', to: 'sessions#destroy',     via: 'delete'
+    match '/about',   to: 'static_pages#about',   via: 'get' 
+  end
+  
   scope '/api' do
+    # These resources are available from the AngularJS routes
     resources :groups, except: [:new, :edit]
   end
 
