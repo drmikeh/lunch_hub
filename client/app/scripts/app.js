@@ -1,17 +1,19 @@
 'use strict';
 
 angular
-  .module('lunchHubApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
-    'ui.router',
-    'ngSanitize',
-    'ngTouch',
-    'xeditable',
-    'ngMessages'
-  ])
-  .config(function ($stateProvider, $urlRouterProvider) {
+.module('lunchHubApp', [
+  'ngAnimate',
+  'ngCookies',
+  'ngResource',
+  'ui.router',
+  'ngSanitize',
+  'ngTouch',
+  'xeditable',
+  'ngMessages'
+])
+.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
+
+  $httpProvider.defaults.withCredentials = true;
 
   $stateProvider
   .state('home', {

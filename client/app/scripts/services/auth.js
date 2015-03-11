@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('lunchHubApp')
-.service('AuthService', function($q) {
+.service('AuthService', function($http /*, $q */) {
 
   var that = this;
 
-  that.authenticated = false;
+  that.currentUser = null;
 
   that.isAuthenticated = function() {
-    return that.authenticated;
+    return !!that.currentUser;
   };
 
   that.mockUser = {
@@ -17,40 +17,46 @@ angular.module('lunchHubApp')
     password: 'secret'
   };
 
-  that.getCurrentUser = function() {
-    console.log('getCurrentUser');
-    // TODO:
-    var deferred = $q.defer();
-    setTimeout(function() {
-      deferred.resolve(that.currentUser);
-    }, 1000);
-    return deferred.promise;
-  };
-
   that.register = function(user) {
     console.log('register: user = ' + JSON.stringify(user));
-    var deferred = $q.defer();
-    setTimeout(function() {
-      that.authenticated = true;
-      that.currentUser = that.mockUser;
-      deferred.resolve(that.currentUser);
-    }, 1000);
-    return deferred.promise;
+    // return getMockLoginPromise();
+    var deferred = $http.post('/api/users', { user: user });
+    deferred.success(function(user) {
+      that.currentUser = user;
+    });
+    return deferred;
   };
 
-  that.login = function(user) {
-    console.log('login: user = ' + JSON.stringify(user));
-    var deferred = $q.defer();
-    setTimeout(function() {
-      that.authenticated = true;
-      that.currentUser = that.mockUser;
-      deferred.resolve(that.currentUser);
-    }, 1000);
-    return deferred.promise;
+  that.login = function(session) {
+    console.log('login: session = ' + JSON.stringify(session));
+    // return getMockLoginPromise();
+    var deferred = $http.post('/api/sessions', session);
+    deferred.success(function(user, status, headers) {
+      that.currentUser = user;
+      console.log('login response headers: ' + JSON.stringify(headers));
+    });
+    return deferred;
   };
 
   that.logout = function() {
     console.log('logout');
+    // return getMockLogoutPromise();
+    return $http.delete('/api/sessions');
+  };
+
+  // MOCKING
+  /*
+  function getMockLoginPromise() {
+    var deferred = $q.defer();
+    setTimeout(function() {
+      that.authenticated = true;
+      that.currentUser = that.mockUser;
+      deferred.resolve(that.currentUser);
+    }, 1000);
+    return deferred.promise;
+  }
+
+  function getMockLogoutPromise() {
     var deferred = $q.defer();
     setTimeout(function() {
       that.authenticated = false;
@@ -58,6 +64,6 @@ angular.module('lunchHubApp')
       deferred.resolve(that.currentUser);
     }, 1000);
     return deferred.promise;
-  };
-
+  }
+  */
 });

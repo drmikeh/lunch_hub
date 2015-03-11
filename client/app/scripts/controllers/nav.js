@@ -2,7 +2,7 @@
 
 angular.module('lunchHubApp')
 
-.controller('NavCtrl', function ($scope, $rootScope, $state, AuthService) {
+.controller('NavCtrl', function ($scope, $rootScope, $state, $browser, AuthService) {
 
   console.log('NavCtrl is alive!');
 
@@ -26,10 +26,6 @@ angular.module('lunchHubApp')
 
   console.log('signedIn(): ' + AuthService.isAuthenticated());
 
-  AuthService.getCurrentUser().then(function(user) {
-    $scope.user = user;
-  });
-
   $scope.logout = function() {
     console.log('NavCtrl.logout');
     AuthService.logout().then(function() {
@@ -44,6 +40,7 @@ angular.module('lunchHubApp')
 
   $rootScope.$on('auth:login', function(event, user) {
     console.log('caught event auth:login with user = ' + JSON.stringify(user));
+    console.log('cookies: ' + JSON.stringify($browser.cookies()));
     $scope.user = user;
   });
 
