@@ -1,16 +1,18 @@
 Rails.application.routes.draw do
-  root 'static_pages#welcome'
+  # root 'static_pages#welcome'
 
   # We have put everything under '/app' or '/api' so that
   # we have 2 prefixes for our proxy:
-  scope '/app' do
+  namespace :app do
     # These resources are available from the Rails routes
-    resources :users, except: [:create, :show]
-    resources :sessions, only: [:create, :destroy]
+
   end
 
-  scope '/api' do
+  namespace :api do
     # These resources are available from the AngularJS routes
     resources :groups, except: [:new, :edit]
+    resources :users, only: [:create, :show, :update, :destroy]
+    resources :sessions, only: [:create]#, :destroy]
+    delete '/sessions', to: 'sessions#destroy'
   end
 end
