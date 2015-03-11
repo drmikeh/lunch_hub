@@ -8,7 +8,8 @@ angular
     'ui.router',
     'ngSanitize',
     'ngTouch',
-    'xeditable'
+    'xeditable',
+    'ngMessages'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
 

@@ -5,31 +5,59 @@ angular.module('lunchHubApp')
 
   var that = this;
 
+  that.authenticated = false;
+
   that.isAuthenticated = function() {
-    return false;
+    return that.authenticated;
   };
 
-  that.currentUser = function() {
+  that.mockUser = {
+    name: 'Mock User',
+    email: 'mock_user@gmail.com',
+    password: 'secret'
+  };
+
+  that.getCurrentUser = function() {
+    console.log('getCurrentUser');
     // TODO:
-    var currentUser = null;
     var deferred = $q.defer();
-    setTimeout(function() { deferred.resolve(currentUser); }, 1000);
+    setTimeout(function() {
+      deferred.resolve(that.currentUser);
+    }, 1000);
     return deferred.promise;
   };
 
   that.register = function(user) {
     console.log('register: user = ' + JSON.stringify(user));
-    // TODO: return a promise
+    var deferred = $q.defer();
+    setTimeout(function() {
+      that.authenticated = true;
+      that.currentUser = that.mockUser;
+      deferred.resolve(that.currentUser);
+    }, 1000);
+    return deferred.promise;
   };
 
   that.login = function(user) {
     console.log('login: user = ' + JSON.stringify(user));
-    // TODO: return a promise
+    var deferred = $q.defer();
+    setTimeout(function() {
+      that.authenticated = true;
+      that.currentUser = that.mockUser;
+      deferred.resolve(that.currentUser);
+    }, 1000);
+    return deferred.promise;
   };
 
   that.logout = function() {
     console.log('logout');
-    // TODO:
+    var deferred = $q.defer();
+    setTimeout(function() {
+      that.authenticated = false;
+      that.currentUser = null;
+      deferred.resolve(that.currentUser);
+    }, 1000);
+    return deferred.promise;
   };
 
 });

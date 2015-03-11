@@ -20,9 +20,9 @@ class Api::GroupsController < ApplicationController
   # POST /groups.json
   def create
     @group = Group.new(group_params)
-    binding.pry
+
     if @group.save
-      render json: @group, status: :created #, location: @group
+      render json: @group, status: :created # , location: @group
     else
       render json: @group.errors, status: :unprocessable_entity
     end
