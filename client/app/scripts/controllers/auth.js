@@ -5,6 +5,7 @@ angular.module('lunchHubApp')
   console.log('AuthCtrl is alive!');
 
   $scope.register = function() {
+    console.log('AuthCtrl.register');
     AuthService.register($scope.user).then(function(user) {
       $rootScope.$emit('auth:new-registration', user);
       $state.go('home');
@@ -12,6 +13,7 @@ angular.module('lunchHubApp')
   };
 
   $scope.login = function() {
+    console.log('AuthCtrl.login');
     AuthService.login($scope.user).then(function(user) {
       $rootScope.$emit('auth:login', user);
       $state.go('home');

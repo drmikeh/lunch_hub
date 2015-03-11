@@ -110,6 +110,12 @@ body {
   float: right;
 }
 
+.registration, .login {
+  button {
+    margin-top: 20px;
+  }
+}
+
 // Overrides for Twitter Bootstrap
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,

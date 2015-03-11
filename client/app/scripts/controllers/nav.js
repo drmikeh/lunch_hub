@@ -30,6 +30,13 @@ angular.module('lunchHubApp')
     $scope.user = user;
   });
 
+  $scope.logout = function() {
+    console.log('NavCtrl.logout');
+    AuthService.logout().then(function() {
+      $rootScope.$emit('auth:logout');
+    });
+  };
+
   $rootScope.$on('auth:new-registration', function(event, user) {
     console.log('caught event auth:new-registration with user = ' + JSON.stringify(user));
     $scope.user = user;
