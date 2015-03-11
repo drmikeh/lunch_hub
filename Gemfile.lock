@@ -38,6 +38,10 @@ GEM
       tzinfo (~> 1.1)
     arel (6.0.0)
     bcrypt (3.1.10)
+    better_errors (2.1.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
     builder (3.2.2)
     coderay (1.1.0)
     diff-lcs (1.2.5)
@@ -70,6 +74,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-rails (0.3.3)
+      pry (>= 0.9.10)
     rack (1.6.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -144,10 +150,12 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
+  better_errors
   factory_girl_rails
   faker
   pg
   pry
+  pry-rails
   rails (= 4.2.0)
   rails-api
   responders (~> 2.0)
