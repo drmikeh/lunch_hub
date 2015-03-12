@@ -1,10 +1,15 @@
 class Api::UsersController < ApplicationController
   respond_to :json
 
-  def show
-    respond_with User.find(params[:id])
+  def index
+    render json: User.select("id", "name, email")
   end
 
+  def show
+    render json: current_user, status: 200
+  end
+
+  # This is our user registration action
   def create
     user = User.new(user_params)
     if user.save
