@@ -24,7 +24,12 @@ angular
   .state('groups', {
     url: '/groups',
     templateUrl: 'views/groups.html',
-    controller: 'GroupCtrl'
+    controller: 'GroupCtrl',
+    onEnter: ['$state', 'AuthService', function($state, AuthService) {
+      if (!AuthService.isAuthenticated()) {
+        $state.go('home');
+      }
+    }]
   })
   .state('about', {
     url: '/about',

@@ -7,9 +7,9 @@ angular.module('lunchHubApp')
   console.log('NavCtrl is alive!');
 
   $scope.tabs = [
-    { state: 'home',   label: 'Home',   active: true },
-    { state: 'groups', label: 'Groups', active: false },
-    { state: 'about',  label: 'About',  active: false }
+    { state: 'home',   label: 'Home',              active: true,  isPublic: true  },
+    { state: 'groups', label: 'Groups',            active: false, isPublic: false },
+    { state: 'about',  label: 'About',             active: false, isPublic: true  },
   ];
 
   $scope.getTabClass = function(tab) {
@@ -24,6 +24,10 @@ angular.module('lunchHubApp')
 
   $scope.isAuthenticated = function() {
     return !!$scope.user;
+  };
+
+  $scope.showTab = function(tab) {
+    return tab.isPublic || $scope.isAuthenticated();
   };
 
   // See if we already have a session
@@ -41,15 +45,18 @@ angular.module('lunchHubApp')
   $rootScope.$on('auth:new-registration', function(event, user) {
     // console.log('caught event auth:new-registration with user = ' + JSON.stringify(user));
     $scope.user = user;
+    $state.go('groups');
   });
 
   $rootScope.$on('auth:login', function(event, user) {
     // console.log('caught event auth:login with user = ' + JSON.stringify(user));
     console.log('cookies: ' + JSON.stringify($browser.cookies()));
     $scope.user = user;
+    $state.go('groups');
   });
 
   $rootScope.$on('auth:logout', function(/* event, user */) {
     $scope.user = null;
+    $state.go('home');
   });
 });

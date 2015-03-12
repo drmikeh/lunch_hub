@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lunchHubApp')
-.controller('AuthCtrl', function ($scope, $rootScope, $state, AuthService) {
+.controller('AuthCtrl', function ($scope, $rootScope, AuthService) {
   console.log('AuthCtrl is alive!');
 
   $scope.register = function() {
@@ -10,7 +10,6 @@ angular.module('lunchHubApp')
     .success(function(user) {
       console.log('register returned with user: ' + JSON.stringify(user));
       $rootScope.$emit('auth:new-registration', user);
-      $state.go('home');
     })
     .error(function(error) {
       alert('Registration Failed: ' + JSON.stringify(error));
@@ -23,7 +22,6 @@ angular.module('lunchHubApp')
     .success(function(user) {
       console.log('login returned with user: ' + JSON.stringify(user));
       $rootScope.$emit('auth:login', user);
-      $state.go('home');
     })
     .error(function(error) {
       alert('Login Failed: ' + JSON.stringify(error));

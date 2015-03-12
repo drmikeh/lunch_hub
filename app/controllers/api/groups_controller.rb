@@ -1,14 +1,12 @@
 class Api::GroupsController < ApplicationController
 
+  before_action :check_permission
   before_action :set_group, only: [:show, :update, :destroy]
 
   # GET /groups
   # GET /groups.json
   def index
     @groups = Group.all
-
-    puts "current_user: #{current_user}"
-
     render json: @groups
   end
 
@@ -52,11 +50,15 @@ class Api::GroupsController < ApplicationController
 
   private
 
-    def set_group
-      @group = Group.find(params[:id])
-    end
+  def set_group
+    @group = Group.find(params[:id])
+  end
 
-    def group_params
-      params.require(:group).permit(:name)
-    end
+  def group_params
+    params.require(:group).permit(:name)
+  end
+
+  def check_permission
+    render json: { error: "Permission Denied" }, status: :unauthorized unless current_user
+  end
 end
