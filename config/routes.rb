@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     # These resources are available from the AngularJS routes
     resources :groups, except: [:new, :edit]
     resources :users, only: [:create, :show, :update, :destroy]
-    resources :sessions, only: [:create]#, :destroy]
+    resources :sessions, only: [:index, :create]#, :destroy]
     delete '/sessions', to: 'sessions#destroy'
   end
 end

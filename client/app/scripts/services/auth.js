@@ -11,6 +11,17 @@ angular.module('lunchHubApp')
     return !!that.currentUser;
   };
 
+  that.getSession = function() {
+    var deferred = $http.get('/api/sessions');
+    deferred.success(function(user) {
+      console.log('getSession returned user = ' + JSON.stringify(user));
+      that.currentUser = user;
+    });
+    return deferred;
+  };
+
+  that.getSession();
+
   that.mockUser = {
     name: 'Mock User',
     email: 'mock_user@gmail.com',
@@ -31,9 +42,8 @@ angular.module('lunchHubApp')
     console.log('login: session = ' + JSON.stringify(session));
     // return getMockLoginPromise();
     var deferred = $http.post('/api/sessions', session);
-    deferred.success(function(user, status, headers) {
+    deferred.success(function(user) {
       that.currentUser = user;
-      console.log('login response headers: ' + JSON.stringify(headers));
     });
     return deferred;
   };
@@ -41,7 +51,11 @@ angular.module('lunchHubApp')
   that.logout = function() {
     console.log('logout');
     // return getMockLogoutPromise();
-    return $http.delete('/api/sessions');
+    var deferred = $http.delete('/api/sessions');
+    deferred.success(function() {
+      that.currentUser = null;
+    });
+    return deferred;
   };
 
   // MOCKING

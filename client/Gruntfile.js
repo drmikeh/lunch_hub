@@ -9,16 +9,6 @@
 
 module.exports = function (grunt) {
 
-  function printCookies(req, res, next) {
-    var msg = 'request.headers: ' + JSON.stringify(req.headers);
-    grunt.log.writeln([msg]);
-
-    msg = 'response.headers: ' + JSON.stringify(res.headers);
-    grunt.log.writeln([msg]);
-
-    next();
-  }
-
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
@@ -99,7 +89,6 @@ module.exports = function (grunt) {
 
             // Setup the proxy
             var middlewares = [
-              printCookies,
               require('grunt-connect-proxy/lib/utils').proxyRequest,
               connect.static('.tmp'),
               connect().use(

@@ -41,11 +41,10 @@
               <li ng-repeat="tab in tabs" ng-class="getTabClass(tab);">
                 <a ui-sref="{{ tab.state }}">{{ tab.label }}</a>
               </li>
-              <!-- TODO: cleanup? -->
-              <li ng-hide="auth.isAuthenticated()"><a ui-sref="login">Log In</a></li>
-              <li ng-hide="auth.isAuthenticated()"><a ui-sref="register">Register</a></li>
-              <li ng-show="auth.isAuthenticated()"><a href="#/">{{ user.email }}</a></li>
-              <li ng-show="auth.isAuthenticated()"><a ng-click="logout()">Log Out</a></li>
+              <li ng-hide="isAuthenticated()"><a ui-sref="login">Log In</a></li>
+              <li ng-hide="isAuthenticated()"><a ui-sref="register">Register</a></li>
+              <li ng-show="isAuthenticated()"><a href="#/">{{ user ? user.email : '' }}</a></li>
+              <li ng-show="isAuthenticated()"><a ng-click="logout()">Log Out</a></li>
             </ul>
           </div>
         </div>
