@@ -30,5 +30,18 @@ module LunchHub
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # IT TOOK ME 5 HOURS TO FIGURE OUT THAT I NEED TO ADD THE FOLLOWING
+    # LINE TO GET FREAKIN RAILS TO SEND A COOKIE!!!
+    # NOTE THAT RAILS-API IS THE CULPRIT HERE!!!
+    config.api_only = false
+
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
+
   end
 end
