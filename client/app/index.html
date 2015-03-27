@@ -43,10 +43,10 @@
                   ng-class="getTabClass(tab)">
                 <a ui-sref="{{ tab.state }}">{{ tab.label }}</a>
               </li>
-              <li ng-hide="isAuthenticated()"><a ui-sref="login">Log In</a></li>
-              <li ng-hide="isAuthenticated()"><a ui-sref="register">Register</a></li>
-              <li ng-show="isAuthenticated()"><a href="#/">{{ user ? user.email : '' }}</a></li>
-              <li ng-show="isAuthenticated()"><a ng-click="logout()">Log Out</a></li>
+              <li ng-hide="isAuthenticated()"><a ui-sref="login"     >Log In</a></li>
+              <li ng-hide="isAuthenticated()"><a ui-sref="register"  >Register</a></li>
+              <li ng-show="isAuthenticated()"><a                     >{{ user ? user.email : '' }}</a></li>
+              <li ng-show="isAuthenticated()"><a ng-click="logout()" >Log Out</a></li>
             </ul>
           </div>
         </div>
@@ -59,7 +59,7 @@
 
     <div class="footer">
       <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+        <p>Written by Mike Hopper for GA WDI</p>
       </div>
     </div>
 

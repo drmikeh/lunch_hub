@@ -25,11 +25,11 @@ angular
     url: '/groups',
     templateUrl: 'views/groups.html',
     controller: 'GroupCtrl',
-    onEnter: ['$state', 'AuthService', function($state, AuthService) {
+    onEnter: function($state, AuthService) {
       if (!AuthService.isAuthenticated()) {
         $state.go('home');
       }
-    }]
+    }
   })
   .state('about', {
     url: '/about',
@@ -59,6 +59,6 @@ angular
 
   $urlRouterProvider.otherwise('home');
   })
-  .run(function(editableOptions) {
-    editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
-  });
+.run(function(editableOptions) {
+  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+});

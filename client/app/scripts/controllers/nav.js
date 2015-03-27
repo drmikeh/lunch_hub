@@ -7,9 +7,9 @@ angular.module('lunchHubApp')
   console.log('NavCtrl is alive!');
 
   $scope.tabs = [
-    { state: 'home',   label: 'Home',              active: true,  isPublic: true  },
-    { state: 'groups', label: 'Groups',            active: false, isPublic: false },
-    { state: 'about',  label: 'About',             active: false, isPublic: true  },
+    { state: 'home',   label: 'Home',   active: true,  isPublic: true  },
+    { state: 'groups', label: 'Groups', active: false, isPublic: false },
+    { state: 'about',  label: 'About',  active: false, isPublic: true  },
   ];
 
   $scope.getTabClass = function(tab) {
@@ -57,6 +57,6 @@ angular.module('lunchHubApp')
 
   $rootScope.$on('auth:logout', function(/* event, user */) {
     $scope.user = null;
-    $state.go('home');
+    $state.go('login');
   });
 });

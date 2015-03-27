@@ -12,21 +12,19 @@ angular.module('lunchHubApp')
   };
 
   that.getSession = function() {
-    var deferred = $http.get('/api/sessions');
-    deferred.success(function(user) {
+    return $http.get('/api/sessions').success(function(user) {
       console.log('getSession returned user = ' + JSON.stringify(user));
       that.currentUser = user;
     });
-    return deferred;
   };
 
   that.getSession();
 
-  that.mockUser = {
-    name: 'Mock User',
-    email: 'mock_user@gmail.com',
-    password: 'secret'
-  };
+  // that.mockUser = {
+  //   name: 'Mock User',
+  //   email: 'mock_user@gmail.com',
+  //   password: 'secret'
+  // };
 
   that.register = function(user) {
     console.log('register: user = ' + JSON.stringify(user));
