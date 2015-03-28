@@ -1,0 +1,37 @@
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+.thumbnail {
+  height: 200px;
+
+  img.pull-right {
+    width: 50px;
+  }
+}
+
+.groups {
+  max-width: 400px;
+  text-align: center;
+  h1 {
+    margin: 20px;
+  }
+  ul {
+    text-align: left;
+    margin-top: 20px;
+    list-style-type: none;
+  }
+  li {
+    padding: 10px;
+  }
+}
+
+.group-actions {
+  float: right;
+}
+
+// injector
+// endinjector
