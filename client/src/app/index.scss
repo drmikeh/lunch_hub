@@ -13,25 +13,8 @@
   }
 }
 
-.groups {
-  max-width: 400px;
-  text-align: center;
-  h1 {
-    margin: 20px;
-  }
-  ul {
-    text-align: left;
-    margin-top: 20px;
-    list-style-type: none;
-  }
-  li {
-    padding: 10px;
-  }
-}
 
-.group-actions {
-  float: right;
-}
+@import "group/group";
 
 // injector
 // endinjector
