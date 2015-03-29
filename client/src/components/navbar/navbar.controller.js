@@ -7,8 +7,7 @@ angular.module('lunchHubApp')
 
   $scope.tabs = [
     { state: 'home',   label: 'Home',   active: true,  isPublic: true  },
-    { state: 'groups', label: 'Groups', active: false, isPublic: false },
-    { state: 'about',  label: 'About',  active: false, isPublic: true  },
+    { state: 'groups', label: 'Groups', active: false, isPublic: false }
   ];
 
   $scope.getTabClass = function(tab) {

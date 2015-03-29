@@ -25,8 +25,8 @@ module.exports = function(options) {
       routes: routes
     };
 
-    if(middleware.length > 0) {
-      server.middleware = middleware;
+    if(middleware().length > 0) {
+      server.middleware = middleware();
     }
 
     browserSync.instance = browserSync.init({
@@ -36,9 +36,9 @@ module.exports = function(options) {
     });
   }
 
-  browserSync.use(browserSyncSpa({
-    selector: '[ng-app]'// Only needed for angular apps
-  }));
+  // browserSync.use(browserSyncSpa({
+  //   selector: '[ng-app]'// Only needed for angular apps
+  // }));
 
   gulp.task('serve', ['watch'], function () {
     browserSyncInit([options.tmp + '/serve', options.src]);

@@ -21,7 +21,10 @@ var proxy = httpProxy.createProxyServer({
 });
 
 proxy.on('error', function(error, req, res) {
-  res.writeHead(500, { 'Content-Type': 'text/plain' } );
+  res.writeHead(500, {
+    'Content-Type': 'text/plain'
+  });
+
   console.error(chalk.red('[Proxy]'), error);
 });
 
@@ -37,7 +40,8 @@ function proxyMiddleware(req, res, next) {
     var requestUrl = chalk.green(req.method + ' ' + req.url);
     console.log(time, prefix, requestUrl);
     proxy.web(req, res);
-  } else {
+  }
+  else {
     next();
   }
 }
